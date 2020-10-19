@@ -1,0 +1,43 @@
+<div class="container">
+  <div *ngIf="assets$ | async as assets">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <td colspan="6"><app-asset-filters (filterChanges)=filterChange($event)></app-asset-filters></td>
+        </tr>
+        <tr>
+        <th>Action</th>
+        <th style="width: 20%;" scope="col" sortable="id" (sort)="onSort($event)">#</th>
+        <th style="width: 20%;" scope="col" sortable="assetName" (sort)="onSort($event)" >Asset Name</th>
+        <th style="width: 20%;" scope="col" sortable="price" (sort)="onSort($event)">Price</th>
+        <th style="width: 20%;" scope="col" sortable="lastUpdate" (sort)="onSort($event)">Last Update</th>
+        <th style="width: 20%;" scope="col" sortable="type" (sort)="onSort($event)">Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let asset of assets; trackBy:trackById">
+        <td>
+            <img *ngIf="asset.isFavorite" src="../assets/favorite.png"
+            alt="Favorite"
+            title="Click to remove Favorite"
+            style="width: 25px;"
+            (click) = removeFromFavorites(asset.id)
+            >
+            <img *ngIf="!asset.isFavorite" src="../assets/unFavorite.png"
+            alt="Un Favorite"
+            title="Click to add Favorite"
+            style="width: 25px;"
+            (click) = addToFavorite(asset.id)
+            >
+        </td>
+        <th scope="row">{{asset.id}}</th>
+        <td>{{asset.assetName}}</td>
+        <td>{{asset.price | currency: '$'}}</td>
+        <td>{{asset.lastUpdate | date: 'M/d/yy, h:mm a'}}</td>
+        <td>{{asset.type}}</td>
+        </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+  

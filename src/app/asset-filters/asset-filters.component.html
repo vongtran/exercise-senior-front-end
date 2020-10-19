@@ -1,0 +1,13 @@
+<form [formGroup]="filterForm">
+    <td>Filter: </td>
+    <td><input class="form-control" placeholder="Id" formControlName="id" type="number"></td>
+    <td> <input class="form-control" placeholder="Asset Name" formControlName="assetName" type="text"></td>
+    <td> <input class="form-control" placeholder="Price" formControlName="price" type="text"></td>
+    <td> <input class="form-control" placeholder="Last Update" formControlName="lastUpdate" type="date"></td>
+    <td> <select formControlName="type" class="form-control" placeholder="Type">
+        <option value=""></option>
+        <option value="Currency">Currency</option>
+        <option value="Stock">Stock</option>
+      </select>
+    </td>
+</form>
